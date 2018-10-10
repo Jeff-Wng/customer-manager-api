@@ -1,0 +1,6 @@
+{
+    "env": {
+        "MONGO_ATLAS_PW": "customer-manager-admin",
+        "JWT_KEY": "secret"
+    }
+}
