@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+const checkAuth = require('../middleware/check-auth');
 
 const Customer = require('../models/customer');
 
@@ -66,7 +67,7 @@ router.get('/', (req, res, next) => {
         })
 });
 
-router.post('/', upload.single('profileImg'), (req, res, next) => {
+router.post('/', checkAuth, upload.single('profileImg'), (req, res, next) => {
     const customer = new Customer({
         // Auto create unique ID
         _id: new mongoose.Types.ObjectId(),
@@ -134,7 +135,7 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', checkAuth, (req, res, next) => {
     const id = req.params.id;
     const updateOps = {};
     // Only change what is passed through
@@ -167,7 +168,7 @@ router.patch('/:id', (req, res, next) => {
         });
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
     const id = req.params.id;
     Customer.remove({_id: id})
         .exec()
