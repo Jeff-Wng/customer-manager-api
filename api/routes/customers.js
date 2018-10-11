@@ -54,7 +54,7 @@ router.get('/', (req, res, next) => {
                         profileImg: doc.profileImg,
                         request: {
                             type: "GET",
-                            url: "http://localhost:3000/customers/" + doc._id
+                            url: "https://customer-manager-api.herokuapp.com/customers/" + doc._id
                         }
                     }
                 })
@@ -96,7 +96,7 @@ router.post('/', checkAuth, upload.single('profileImg'), (req, res, next) => {
                     profileImg: req.body.profileImg,
                     request: {
                         type: 'GET',
-                        url: "http://localhost:3000/customers/" + result._id
+                        url: "https://customer-manager-api.herokuapp.com/customers/" + result._id
                     }
                 }
             })
@@ -122,7 +122,7 @@ router.get('/:id', (req, res, next) => {
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_CUSTOMERS',
-                        url: 'http://localhost:3000/customers'
+                        url: 'https://customer-manager-api.herokuapp.com/customers'
                     }
                 });
             } else {
@@ -156,7 +156,7 @@ router.patch('/:id', checkAuth, (req, res, next) => {
                 message: 'Customer updated!',
                 request: {
                     type: 'GET',
-                    url: 'http://localhost:3000/customers/' + id
+                    url: 'https://customer-manager-api.herokuapp.com/customers/' + id
                 }
             })
         })
@@ -177,7 +177,7 @@ router.delete('/:id', checkAuth, (req, res, next) => {
                 message: "Customer deleted",
                 request: {
                     type: 'GET',
-                    url: 'http://localhost:3000/customer',
+                    url: 'https://customer-manager-api.herokuapp.com/customer',
                     body: {firstName: 'String', lastName: "String", email: "String", gender: "String", city: "String", state: "String", profileImg: "String"}
                 }
             });

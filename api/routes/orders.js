@@ -22,15 +22,15 @@ router.get('/:customerId', (req, res, next) => {
                         customerId: doc.customerId,
                         request: {
                             type: "GET",
-                            url: "http://localhost:3000/orders/" + doc._id
+                            url: "https://customer-manager-api.herokuapp.com/orders/" + doc._id
                         },
                         productInfo: {
                             tpye: 'GET',
-                            url: "http://localhost:3000/products/" + doc.product
+                            url: "https://customer-manager-api.herokuapp.com/products/" + doc.product
                         },
                         customerInfo: {
                             type: "GET",
-                            url: "http://localhost:3000/customers/" + doc.customerId
+                            url: "https://customer-manager-api.herokuapp.com/customers/" + doc.customerId
                         }
                     }
                 })
@@ -76,15 +76,15 @@ router.post('/', checkAuth, (req, res, next) => {
                 },
                 request: {
                     type: "GET",
-                    url: "http://localhost:3000/orders/" + result._id
+                    url: "https://customer-manager-api.herokuapp.com/orders/" + result._id
                 },
                 productInfo: {
                     tpye: 'GET',
-                    url: "http://localhost:3000/products/" + result.product
+                    url: "https://customer-manager-api.herokuapp.com/products/" + result.product
                 },
                 customerInfo: {
                     type: "GET",
-                    url: "http://localhost:3000/customers/" + result.customer
+                    url: "https://customer-manager-api.herokuapp.com/customers/" + result.customer
                 }
             });
         })
@@ -111,7 +111,7 @@ router.get('/:orderId', (req, res, next) => {
                 order: order,
                 request: {
                     type: "GET",
-                    url: "http://localhost:3000/orders"
+                    url: "https://customer-manager-api.herokuapp.com/orders"
                 }
             })
         })
@@ -131,7 +131,7 @@ router.delete('/:orderId', checkAuth, (req, res, next) => {
                 requerst: {
                     type: "POST",
                     description: "CREATE_NEW_ORDER",
-                    url: "http://localhost:3000/orders",
+                    url: "https://customer-manager-api.herokuapp.com/orders",
                     body: {product: 'ID', quantity: "Number", customer: "ID"}
                 }
            })

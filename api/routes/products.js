@@ -48,7 +48,7 @@ router.get('/', (req, res, next) => {
                         productImage: doc.productImage,
                         request: {
                             type: "GET",
-                            url: "http://localhost:3000/products/" + doc._id
+                            url: "https://customer-manager-api.herokuapp.com/products/" + doc._id
                         }
                     }
                 })
@@ -85,7 +85,7 @@ router.post('/', checkAuth, upload.single('productImage'), (req, res, next) => {
                     productImage: result.productImage,
                     request: {
                         type: 'GET',
-                        url: "http://localhost:3000/products/" + result._id
+                        url: "https://customer-manager-api.herokuapp.com/products/" + result._id
                     }
                 }
             })
@@ -111,7 +111,7 @@ router.get('/:id', (req, res, next) => {
                     request: {
                         type: 'GET',
                         description: 'GET_ALL_PRODUCTS',
-                        url: 'http://localhost:3000/products'
+                        url: 'https://customer-manager-api.herokuapp.com/products'
                     }
                 });
             } else {
@@ -145,7 +145,7 @@ router.patch('/:id', checkAuth, (req, res, next) => {
                 message: 'Product updated!',
                 request: {
                     type: 'GET',
-                    url: 'http://localhost:3000/products/' + id
+                    url: 'https://customer-manager-api.herokuapp.com/products/' + id
                 }
             })
         })
@@ -167,7 +167,7 @@ router.delete('/:id', checkAuth, (req, res, next) => {
                 request: {
                     type: 'POST',
                     description: 'CREATE_NEW_PRODUCT',
-                    url: 'http://localhost:3000/products',
+                    url: 'https://customer-manager-api.herokuapp.com/products',
                     body: {name: 'String', price: "Number"}
                 }
             });
