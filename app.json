@@ -1,0 +1,5 @@
+{
+    "name": "Customer Manager API",
+    "description": "An API created with Node.js and Express for Customer Manager application",
+    "repository": "https://github.com/jwong421/customer-manager-api"
+}
