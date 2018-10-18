@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 router.get('/', (req, res, next) => {
     Customer.find()
         // Select tells which variables to return when API is called
-        .select('_id firstName lastName email gender city state profileImg')
+        .select('_id firstName lastName email gender city state profileImage')
         .exec()
         .then(docs => {
             const response = {
@@ -51,7 +51,7 @@ router.get('/', (req, res, next) => {
                         gender: doc.gender,
                         city: doc.city,
                         state: doc.state,
-                        profileImg: doc.profileImg,
+                        profileImage: doc.profileImage,
                         request: {
                             type: "GET",
                             url: "https://customer-manager-api.herokuapp.com/customers/" + doc._id
@@ -67,7 +67,15 @@ router.get('/', (req, res, next) => {
         })
 });
 
-router.post('/', checkAuth, upload.single('profileImg'), (req, res, next) => {
+router.post('/', checkAuth, upload.single('profileImage'), (req, res, next) => {
+    // If a profile picture is uploaded from client side, use that
+    // else use default profile picture
+    let img = null;
+    if(req.file) {
+        img = req.file.path;
+    } else {
+        img = req.body.profileImage;
+    }
     const customer = new Customer({
         // Auto create unique ID
         _id: new mongoose.Types.ObjectId(),
@@ -77,7 +85,7 @@ router.post('/', checkAuth, upload.single('profileImg'), (req, res, next) => {
         gender: req.body.gender,
         city: req.body.city,
         state: req.body.state,
-        profileImg: req.body.profileImg
+        profileImage: img
     })
     // Stores in database
     customer.save()
@@ -93,7 +101,7 @@ router.post('/', checkAuth, upload.single('profileImg'), (req, res, next) => {
                     gender: req.body.gender,
                     city: req.body.city,
                     state: req.body.state,
-                    profileImg: req.body.profileImg,
+                    profileImage: req.body.profileImage,
                     request: {
                         type: 'GET',
                         url: "https://customer-manager-api.herokuapp.com/customers/" + result._id

@@ -8,7 +8,7 @@ const customerSchema = mongoose.Schema({
     gender: {type: String, required: true},
     city: {type: String, required: true},
     state: {type: String, required: true},
-    profileImg: {type: String, default: 'uploads/male.jpg'}
+    profileImage: {type: String, default: 'uploads/male.jpg'}
 });
 
 module.exports = mongoose.model('Customer', customerSchema);
